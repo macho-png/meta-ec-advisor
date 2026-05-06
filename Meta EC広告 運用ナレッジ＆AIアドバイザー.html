@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)file:///C:/Users/%E5%90%89%E6%9D%91%E6%82%A0%E5%A4%AA%E9%83%8E/Downloads/index_1.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta EC広告 運用ナレッジ＆AIアドバイザー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./Meta EC広告 運用ナレッジ＆AIアドバイザー_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --bg2: #111318;
+    --bg3: #181c24;
+    --card: #1a1e28;
+    --card-hover: #1f2535;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(100,160,255,0.3);
+    --text: #e8eaf0;
+    --text2: #8892a4;
+    --text3: #5a6478;
+    --accent: #4f8ef7;
+    --accent2: #7c3aed;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --teal: #14b8a6;
+    --font: 'Noto Sans JP', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,12,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 56px;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  .logo span { color: var(--text2); font-weight: 400; }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+  }
+  .tab {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text2);
+    border: none;
+    background: none;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .tab.active { color: var(--accent); background: rgba(79,142,247,0.1); }
+  .update-badge {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text3);
+    font-family: var(--mono);
+    white-space: nowrap;
+  }
+  .update-badge .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    margin-right: 5px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* ── MAIN ── */
+  main { max-width: 1160px; margin: 0 auto; padding: 28px 24px 60px; }
+
+  /* ── PANEL ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── KNOWLEDGE BASE ── */
+  .kb-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 8px 12px 8px 36px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--text3); }
+
+  .filter-btn {
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--text2);
+    font-size: 12px;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(79,142,247,0.08); }
+
+  .refresh-btn {
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.06);
+    color: var(--green);
+    font-size: 12px;
+    font-family: var(--mono);
+    cursor: pointer;
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .refresh-btn:hover { background: rgba(34,197,94,0.12); }
+  .refresh-btn svg { transition: transform .5s; }
+  .refresh-btn.spinning svg { animation: spin .6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .kb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .kb-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all .15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .kb-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent-color, var(--accent));
+    border-radius: 3px 0 0 3px;
+  }
+  .kb-card:hover { border-color: var(--border-hover); background: var(--card-hover); transform: translateY(-1px); }
+  .kb-card.hidden { display: none; }
+  .kb-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .kb-card-title { font-weight: 500; font-size: 13px; color: var(--text); line-height: 1.4; }
+  .badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-family: var(--mono);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .badge-high { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+  .badge-mid { background: rgba(245,158,11,0.12); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+  .badge-new { background: rgba(79,142,247,0.12); color: var(--accent); border: 1px solid rgba(79,142,247,0.2); }
+  .kb-card-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+  .kb-card-meta { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+  .cat-tag {
+    font-size: 10px;
+    font-family: var(--mono);
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text3);
+    border: 1px solid var(--border);
+  }
+  .kb-updated {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--text3);
+    font-family: var(--mono);
+  }
+
+  /* detail modal */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 28px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    border-radius: 6px;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal h2 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .modal-body { font-size: 13px; color: var(--text2); line-height: 1.8; }
+  .modal-steps { margin-top: 16px; }
+  .step {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--accent);
+    margin-top: 2px;
+  }
+  .step-text { font-size: 13px; color: var(--text2); }
+
+  /* ── ADVISOR ── */
+  .advisor-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .advisor-layout { grid-template-columns: 1fr; }
+  }
+
+  .chat-container {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+  }
+  .chat-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ai-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  .chat-header-title { font-weight: 500; font-size: 13px; }
+  .chat-header-sub { font-size: 11px; color: var(--text3); margin-left: auto; }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .msg {
+    display: flex;
+    gap: 10px;
+    max-width: 90%;
+  }
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+  .msg-avatar {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .msg.ai .msg-avatar { background: rgba(79,142,247,0.15); color: var(--accent); }
+  .msg.user .msg-avatar { background: rgba(124,58,237,0.15); color: var(--accent2); }
+  .msg-bubble {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .msg.ai .msg-bubble {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 4px 12px 12px 12px;
+  }
+  .msg.user .msg-bubble {
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.2);
+    color: var(--text);
+    border-radius: 12px 4px 12px 12px;
+  }
+  .msg-image {
+    max-width: 200px;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .typing {
+    display: flex; gap: 4px; align-items: center;
+    padding: 12px 14px;
+  }
+  .typing span {
+    width: 6px; height: 6px;
+    background: var(--text3);
+    border-radius: 50%;
+    animation: bounce .9s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: .15s; }
+  .typing span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+
+  .chat-input-area {
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .image-preview-strip {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .preview-thumb {
+    position: relative;
+    width: 60px; height: 60px;
+  }
+  .preview-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .preview-remove {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 16px; height: 16px;
+    background: var(--red);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .chat-input-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .chat-textarea {
+    flex: 1;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 9px 12px;
+    resize: none;
+    outline: none;
+    min-height: 38px;
+    max-height: 120px;
+    transition: border-color .15s;
+    line-height: 1.5;
+  }
+  .chat-textarea:focus { border-color: var(--accent); }
+  .chat-textarea::placeholder { color: var(--text3); }
+
+  .img-upload-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text3);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  .img-upload-btn:hover { border-color: var(--border-hover); color: var(--accent); }
+
+  .send-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  .send-btn:hover { background: #6ba3fa; }
+  .send-btn:disabled { background: var(--bg3); color: var(--text3); cursor: not-allowed; }
+
+  /* sidebar tips */
+  .advisor-sidebar { display: flex; flex-direction: column; gap: 12px; }
+  .sidebar-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .sidebar-card h3 {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--mono);
+    color: var(--text3);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .prompt-chip {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 3px 3px 3px 0;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all .15s;
+    line-height: 1.4;
+  }
+  .prompt-chip:hover { border-color: var(--border-hover); color: var(--accent); background: rgba(79,142,247,0.06); }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; margin-top: 2px; }
+
+  /* ── FOOTER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .section-sub { font-size: 12px; color: var(--text3); }
+  .live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--green);
+    font-family: var(--mono);
+    margin-left: auto;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">META<span>/</span>EC<span>_</span>OPS</div>
+  <nav class="tabs">
+    <button class="tab active" onclick="switchTab(&#39;kb&#39;)">施策ナレッジ</button>
+    <button class="tab" onclick="switchTab(&#39;advisor&#39;)">AIアドバイザー</button>
+  </nav>
+  <div class="update-badge">
+    <span class="dot"></span>
+    最終更新: <span id="last-updated">5月6日 18:10</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== KNOWLEDGE BASE PANEL ===== -->
+  <div class="panel active" id="panel-kb">
+    <div class="section-header">
+      <div>
+        <div class="section-title">施策ナレッジベース</div>
+        <div class="section-sub">Meta EC広告 CVを増加させる管理画面施策一覧</div>
+      </div>
+      <div class="live-indicator" id="live-ind" style="display:none">
+        <span class="dot" style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block"></span>
+        最新情報に更新済み
+      </div>
+    </div>
+
+    <div class="kb-controls">
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input class="search-input" type="text" id="kb-search" placeholder="施策を検索..." oninput="filterKB()">
+      </div>
+      <button class="filter-btn active" data-filter="all" onclick="setFilter(this, &#39;all&#39;)">すべて</button>
+      <button class="filter-btn" data-filter="高" onclick="setFilter(this, &#39;高&#39;)">効果大</button>
+      <button class="filter-btn" data-filter="中" onclick="setFilter(this, &#39;中&#39;)">効果中</button>
+      <button class="filter-btn" data-filter="新" onclick="setFilter(this, &#39;新&#39;)">新機能</button>
+      <button class="filter-btn" data-filter="キャンペーン" onclick="setFilter(this, &#39;キャンペーン&#39;)">キャンペーン</button>
+      <button class="filter-btn" data-filter="オーディエンス" onclick="setFilter(this, &#39;オーディエンス&#39;)">オーディエンス</button>
+      <button class="filter-btn" data-filter="クリエイティブ" onclick="setFilter(this, &#39;クリエイティブ&#39;)">クリエイティブ</button>
+      <button class="filter-btn" data-filter="シグナル" onclick="setFilter(this, &#39;シグナル&#39;)">シグナル</button>
+      <button class="refresh-btn" id="refresh-btn" onclick="refreshKnowledge()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        最新情報を取得
+      </button>
+    </div>
+
+    <div class="kb-grid" id="kb-grid">
+    <div class="kb-card" data-id="1" data-cat="キャンペーン" data-effect="高" style="--accent-color: #4f8ef7" onclick="openModal(1)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Advantage+ ショッピングキャンペーン（ASC）</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">AIが予算・入札・配信を一括最適化。ECでは最も推奨される構成</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">キャンペーン</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="2" data-cat="キャンペーン" data-effect="高" style="--accent-color: #4f8ef7" onclick="openModal(2)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">最高価値 / 目標ROAS 入札</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">売上金額ベースで入札。高LTV顧客を優先的に獲得できる</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">キャンペーン</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="3" data-cat="キャンペーン" data-effect="中" style="--accent-color: #4f8ef7" onclick="openModal(3)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">キャンペーン予算最適化（CBO）</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">予算をキャンペーン全体で流動させ最も効率の良い広告セットに集中</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">キャンペーン</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="4" data-cat="キャンペーン" data-effect="中" style="--accent-color: #4f8ef7" onclick="openModal(4)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">目標コスト入札（コスト上限）</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">CPA上限を設けつつ学習フェーズを安定させる</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">キャンペーン</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="5" data-cat="オーディエンス" data-effect="高" style="--accent-color: #22c55e" onclick="openModal(5)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Advantage+ オーディエンス</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">シグナルだけ渡してAIが最適ユーザーを発見。ターゲ制限不要</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">オーディエンス</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="6" data-cat="オーディエンス" data-effect="高" style="--accent-color: #22c55e" onclick="openModal(6)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">購入者LAL（類似オーディエンス）1〜3%</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">過去購入者から高精度な類似オーディエンスを作成</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">オーディエンス</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="7" data-cat="オーディエンス" data-effect="高" style="--accent-color: #22c55e" onclick="openModal(7)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">カート放棄リターゲティング</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">AddToCart / InitiateCheckout済みユーザーへの購入訴求</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">オーディエンス</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="8" data-cat="オーディエンス" data-effect="中" style="--accent-color: #22c55e" onclick="openModal(8)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">エンゲージメントリターゲティング</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">動画視聴・Instagram反応ユーザーを下層ファネルへ誘導</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">オーディエンス</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="9" data-cat="クリエイティブ" data-effect="高" style="--accent-color: #f59e0b" onclick="openModal(9)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Dynamic Creative（DCO）</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">素材の組み合わせをAIが自動最適化。最強パターンを自動発見</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">クリエイティブ</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="10" data-cat="クリエイティブ" data-effect="高" style="--accent-color: #f59e0b" onclick="openModal(10)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">カタログ広告（DPA）</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">閲覧商品を自動パーソナライズ表示。リターゲ+プロスペク対応</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">クリエイティブ</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="11" data-cat="クリエイティブ" data-effect="新" style="--accent-color: #4f8ef7" onclick="openModal(11)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Advantage+ クリエイティブ</div>
+        <span class="badge badge-new">新機能</span>
+      </div>
+      <div class="kb-card-desc">AIが自動で画像調整・テキスト最適化・音楽追加を実施</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">クリエイティブ</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="12" data-cat="クリエイティブ" data-effect="中" style="--accent-color: #f59e0b" onclick="openModal(12)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">リール / ストーリーズ 縦型動画</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">フォーマットネイティブな縦型クリエイティブでCTR・CVR改善</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">クリエイティブ</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="13" data-cat="シグナル" data-effect="高" style="--accent-color: #14b8a6" onclick="openModal(13)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Conversions API（CAPI）導入</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">サーバーサイドでCVイベント送信。ブラウザ制限の損失を回復</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">シグナル</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="14" data-cat="シグナル" data-effect="高" style="--accent-color: #14b8a6" onclick="openModal(14)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Aggregated Event Measurement（AEM）設定</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">iOS向けに最優先CVイベントを正しく設定する</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">シグナル</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="15" data-cat="シグナル" data-effect="中" style="--accent-color: #14b8a6" onclick="openModal(15)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Pixelイベントマッチング品質（EMQ）向上</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">メール・電話・顧客IDを渡してEMQスコアを7以上に改善</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">シグナル</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="16" data-cat="シグナル" data-effect="中" style="--accent-color: #14b8a6" onclick="openModal(16)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">オフラインCVアップロード</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">店舗・電話購入などオフラインCVを広告最適化に活用</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">シグナル</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="17" data-cat="配信設定" data-effect="高" style="--accent-color: #7c3aed" onclick="openModal(17)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">Advantage+ プレースメント</div>
+        <span class="badge badge-high">効果大</span>
+      </div>
+      <div class="kb-card-desc">全面配置でシステムに枠を選ばせる。CPA改善効果が高い</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">配信設定</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="18" data-cat="配信設定" data-effect="中" style="--accent-color: #7c3aed" onclick="openModal(18)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">学習フェーズ安定化</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">週50CVを確保し設定変更を最小限に。学習リセットを防ぐ</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">配信設定</span>
+        <span class="kb-updated">2025-05</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="19" data-cat="配信設定" data-effect="中" style="--accent-color: #7c3aed" onclick="openModal(19)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">CVウィンドウの最適設定</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">購買サイクルに合わせて7日クリック/1日クリックを切り替え</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">配信設定</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  
+    <div class="kb-card" data-id="20" data-cat="配信設定" data-effect="中" style="--accent-color: #7c3aed" onclick="openModal(20)">
+      <div class="kb-card-header">
+        <div class="kb-card-title">カタログ商品セット最適化</div>
+        <span class="badge badge-mid">効果中</span>
+      </div>
+      <div class="kb-card-desc">在庫・利益率・売れ筋で絞り込んだ商品セットをDPAに活用</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">配信設定</span>
+        <span class="kb-updated">2025-04</span>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ===== ADVISOR PANEL ===== -->
+  <div class="panel" id="panel-advisor">
+    <div class="section-header">
+      <div>
+        <div class="section-title">AIアドバイザー</div>
+        <div class="section-sub">管理画面のスクショや状況を送ると、改善提案を返します</div>
+      </div>
+    </div>
+    <div class="advisor-layout">
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="ai-dot"></div>
+          <span class="chat-header-title">Meta EC 広告アドバイザー</span>
+          <span class="chat-header-sub">画像 + テキストで相談</span>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="msg ai">
+            <div class="msg-avatar">M</div>
+            <div class="msg-bubble">
+              こんにちは！Meta EC広告の改善をサポートします。<br><br>
+              管理画面のスクリーンショット（キャンペーン一覧・広告セット・クリエイティブ・レポートなど）を送っていただくか、現在の状況をテキストで教えてください。<br><br>
+              具体的な改善提案をお返しします。
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <div class="image-preview-strip" id="preview-strip"></div>
+          <div class="chat-input-row">
+            <label class="img-upload-btn" title="スクショをアップロード">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+              <input type="file" accept="image/*" multiple="" style="display:none" id="img-input" onchange="handleImages(this)">
+            </label>
+            <textarea class="chat-textarea" id="chat-input" placeholder="状況を教えてください（例：CPAが先週比で30%悪化しています）" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+            <button class="send-btn" id="send-btn" onclick="sendMessage()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="advisor-sidebar">
+        <div class="sidebar-card">
+          <h3>よくある相談</h3>
+          <div>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;CPAが悪化しています。改善策を教えてください。&#39;)">CPA悪化の原因と対策</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;学習フェーズから抜け出せない広告セットがあります。&#39;)">学習フェーズが終わらない</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;iOS以降からCVが計測できなくなっています。&#39;)">iOS後のCV計測問題</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;リターゲティングの効果が落ちてきました。&#39;)">リターゲ効果の低下</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;広告のフリークエンシーが高くなっています。対策を教えてください。&#39;)">フリークエンシー対策</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;カタログ広告（DPA）を設定したいのですが、ベストプラクティスを教えてください。&#39;)">DPA設定のベストプラクティス</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;Advantage+ショッピングキャンペーンに移行すべきですか？&#39;)">ASC移行の判断基準</span>
+            <span class="prompt-chip" onclick="insertPrompt(&#39;クリエイティブのCTRが低下しています。改善策は？&#39;)">CTR低下の改善</span>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>スクショ送付時のチェックリスト</h3>
+          <div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              キャンペーン全体の予算・消化額
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              入札戦略と目標CPA/ROAS
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              CVイベントの設定状況
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              週次CV数・学習フェーズ状態
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              オーディエンスのサイズと重複
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              CAPIの接続状況・EMQスコア
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>対応可能な分析</h3>
+          <div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              管理画面スクショの詳細診断
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              数値（CPA・ROAS・CTR等）の評価
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              構造の問題点と優先度付け改善案
+            </div>
+            <div class="checklist-item">
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              クリエイティブの改善ポイント指摘
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-title"></h2>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-steps" id="modal-steps"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// API CONFIG
+// ═══════════════════════════════════════
+// CloudflareワーカーのURLをここに入れる（設定後に更新）
+const PROXY_URL = 'https://metamacho.ca02965.workers.dev';
+
+// ═══════════════════════════════════════
+// KNOWLEDGE BASE DATA
+// ═══════════════════════════════════════
+const KB_DATA = [
+  // CAMPAIGN
+  {
+    id: 1, cat: 'キャンペーン', effect: '高', badge: '効果大',
+    title: 'Advantage+ ショッピングキャンペーン（ASC）',
+    desc: 'AIが予算・入札・配信を一括最適化。ECでは最も推奨される構成',
+    color: '#4f8ef7',
+    updated: '2025-05',
+    detail: 'Advantage+ショッピングキャンペーン（ASC）は、Metaが推奨するEC専用の全自動最適化キャンペーンです。ターゲティング・入札・クリエイティブ配信をすべてAIに委ねることで、従来の手動設定より高いCVR・低いCPAを実現するケースが多く報告されています。',
+    steps: [
+      '広告マネージャ → 新規キャンペーン → 「売上」目標を選択',
+      '「Advantage+ショッピングキャンペーン」をONにする',
+      'カタログをリンクし、予算を設定（初期は実績CPAの50CV分/週を目安に）',
+      '既存顧客の上限比率（10〜30%推奨）を設定して配信開始',
+      '学習フェーズ中（7〜14日）は設定変更を避ける'
+    ]
+  },
+  {
+    id: 2, cat: 'キャンペーン', effect: '高', badge: '効果大',
+    title: '最高価値 / 目標ROAS 入札',
+    desc: '売上金額ベースで入札。高LTV顧客を優先的に獲得できる',
+    color: '#4f8ef7',
+    updated: '2025-05',
+    detail: '「最高価値」入札は、購入金額（CV価値）が最大化するように自動最適化する戦略です。週50件以上のCV購入データがある場合に特に効果的です。目標ROASを設定することで、収益性を保ちながら配信量を最大化できます。',
+    steps: [
+      '広告セット → 入札戦略 → 「最高価値」を選択',
+      '任意でROAS目標を入力（設定する場合は直近30日の実績値から±10%以内で）',
+      'Pixelの購入イベントに「value」パラメータを正しく渡していることを確認',
+      '週50CVを下回る場合はまず「コンバージョン数最大化」で学習を安定させる'
+    ]
+  },
+  {
+    id: 3, cat: 'キャンペーン', effect: '中', badge: '効果中',
+    title: 'キャンペーン予算最適化（CBO）',
+    desc: '予算をキャンペーン全体で流動させ最も効率の良い広告セットに集中',
+    color: '#4f8ef7',
+    updated: '2025-04',
+    detail: 'CBOを有効にすることで、Metaのシステムがリアルタイムで最もCVが取れる広告セットに予算を自動的に傾けます。広告セットが2〜4つ以上ある場合に効果的。ただし、特定のオーディエンスにリーチを保証したい場合は広告セット別予算上限を設定してください。',
+    steps: [
+      'キャンペーン設定 → 「キャンペーン予算の最適化」をON',
+      '1日あたりの予算 or 通算予算を設定',
+      '広告セット別の最小/最大予算は原則設定しない（AIの裁量を最大化）',
+      '週次で広告セット別CPAを確認し、大幅に効率の悪いものは停止'
+    ]
+  },
+  {
+    id: 4, cat: 'キャンペーン', effect: '中', badge: '効果中',
+    title: '目標コスト入札（コスト上限）',
+    desc: 'CPA上限を設けつつ学習フェーズを安定させる',
+    color: '#4f8ef7',
+    updated: '2025-04',
+    detail: 'コスト上限設定により、設定したCPA以下の配信に絞り込めます。ただし設定値が低すぎると配信量が極端に減るリスクがあります。実績CPAの120〜150%程度から始め、徐々に引き下げるアプローチが効果的です。',
+    steps: [
+      '入札戦略 → 「コスト上限」を選択',
+      '目標CPAの1.2〜1.5倍程度で初期設定',
+      '3〜5日ごとに10〜15%ずつ引き下げる',
+      '配信量が週50CVを下回る場合は上限を一時的に引き上げる'
+    ]
+  },
+
+  // AUDIENCE
+  {
+    id: 5, cat: 'オーディエンス', effect: '高', badge: '効果大',
+    title: 'Advantage+ オーディエンス',
+    desc: 'シグナルだけ渡してAIが最適ユーザーを発見。ターゲ制限不要',
+    color: '#22c55e',
+    updated: '2025-05',
+    detail: 'Advantage+オーディエンスでは、詳細なターゲティングを手動で設定するのではなく、既存顧客データや興味関心シグナルをヒントとして渡し、残りはMetaのAIが最適なユーザーを探索します。プロスペクティングキャンペーンでは特に効果が高い。',
+    steps: [
+      '広告セット → オーディエンス → 「Advantage+オーディエンス」を選択',
+      'カスタムオーディエンス（既存顧客リスト・サイト訪問者）をシグナルとして追加',
+      '年齢・地域など最低限の制限のみ設定し、詳細な興味関心は省略',
+      '2〜3週間後にインサイト画面でオーディエンス拡張の効果を確認'
+    ]
+  },
+  {
+    id: 6, cat: 'オーディエンス', effect: '高', badge: '効果大',
+    title: '購入者LAL（類似オーディエンス）1〜3%',
+    desc: '過去購入者から高精度な類似オーディエンスを作成',
+    color: '#22c55e',
+    updated: '2025-04',
+    detail: '購入者のカスタムオーディエンスをシードに1〜3%の類似オーディエンスを作成することで、購買意欲の高いユーザーにリーチできます。シードのサイズは最低1,000人以上、理想は5,000人以上が推奨です。',
+    steps: [
+      'オーディエンス → 「類似オーディエンスを作成」',
+      'ソース：購入者のカスタムオーディエンス（過去180日〜1年）',
+      'サイズ：1〜2%から開始し、規模に応じて3%まで試す',
+      '購入者リストを月次でCAPIまたはCSVアップロードで最新化する'
+    ]
+  },
+  {
+    id: 7, cat: 'オーディエンス', effect: '高', badge: '効果大',
+    title: 'カート放棄リターゲティング',
+    desc: 'AddToCart / InitiateCheckout済みユーザーへの購入訴求',
+    color: '#22c55e',
+    updated: '2025-05',
+    detail: 'カートに追加またはチェックアウト開始したユーザーは購買意欲が最も高いセグメントです。3日・7日・14日のウィンドウで分けてアプローチすることで、適切なメッセージとオファーを届けられます。',
+    steps: [
+      'PixelでAddToCart・InitiateCheckoutイベントが正しく発火しているか確認',
+      'カスタムオーディエンス → 「ウェブサイト」→ AddToCart（過去7日）を作成',
+      '既購入者は必ず除外設定する',
+      '3日以内：割引クーポン訴求、4〜14日：リマインドクリエイティブで配信'
+    ]
+  },
+  {
+    id: 8, cat: 'オーディエンス', effect: '中', badge: '効果中',
+    title: 'エンゲージメントリターゲティング',
+    desc: '動画視聴・Instagram反応ユーザーを下層ファネルへ誘導',
+    color: '#22c55e',
+    updated: '2025-04',
+    detail: '動画を75%以上視聴したユーザーや、Instagramプロフィールにエンゲージしたユーザーはブランド認知度が高く、購買可能性も高いセグメントです。このウォームオーディエンスに購入直結のクリエイティブを配信することで効率が高まります。',
+    steps: [
+      'カスタムオーディエンス → 「動画」→ 75%以上視聴（過去30日）',
+      'カスタムオーディエンス → 「Instagramアカウント」→ エンゲージ（過去30日）',
+      '上記を統合したオーディエンスを作成し専用の広告セットで配信',
+      'クリエイティブは商品詳細・レビュー・限定オファーを前面に出す'
+    ]
+  },
+
+  // CREATIVE
+  {
+    id: 9, cat: 'クリエイティブ', effect: '高', badge: '効果大',
+    title: 'Dynamic Creative（DCO）',
+    desc: '素材の組み合わせをAIが自動最適化。最強パターンを自動発見',
+    color: '#f59e0b',
+    updated: '2025-05',
+    detail: 'Dynamic Creative Optimizationでは、複数の画像・見出し・テキスト・CTAをアップロードすることで、Metaが各ユーザーに最適な組み合わせを自動的に選択・配信します。クリエイティブテストの工数を大幅に削減できます。',
+    steps: [
+      '広告作成 → 「クリエイティブを最適化」をON（キャンペーン作成時に設定）',
+      '画像・動画：3〜5パターン用意（縦横比・静止画・動画を混在可）',
+      '見出し：5〜10パターン（ベネフィット訴求・価格訴求・緊急性など）',
+      'プライマリテキスト：5パターン（短文・長文・絵文字あり/なしなど）',
+      '2週間後にパフォーマンスレポートで勝ちパターンを特定し横展開'
+    ]
+  },
+  {
+    id: 10, cat: 'クリエイティブ', effect: '高', badge: '効果大',
+    title: 'カタログ広告（DPA）',
+    desc: '閲覧商品を自動パーソナライズ表示。リターゲ+プロスペク対応',
+    color: '#f59e0b',
+    updated: '2025-05',
+    detail: 'Dynamic Product Ads（DPA）は、Metaカタログと連携してユーザーが閲覧した商品や関連商品を自動的に広告に表示します。リターゲティングはもちろん、「ブロードオーディエンス」設定でプロスペクティングにも活用できます。',
+    steps: [
+      'コマースマネージャ → カタログ作成 → 全商品のフィードを連携',
+      '広告目標「売上」→「カタログ販売」を選択',
+      'オーディエンス：サイト訪問者（リターゲ）+ ブロードオーディエンス（プロスペク）',
+      'カタログ画像の品質確認：高解像度・白背景・正確な価格・在庫情報',
+      '価格・在庫データは毎日自動更新されるようフィードを設定'
+    ]
+  },
+  {
+    id: 11, cat: 'クリエイティブ', effect: '新', badge: '新機能',
+    title: 'Advantage+ クリエイティブ',
+    desc: 'AIが自動で画像調整・テキスト最適化・音楽追加を実施',
+    color: '#4f8ef7',
+    updated: '2025-05',
+    detail: 'Advantage+クリエイティブは、アップロードした素材をMetaのAIが自動加工・最適化する機能群です。明るさ・コントラスト調整、テキストオーバーレイの最適配置、BGM追加、画像からの動画生成なども含まれます。',
+    steps: [
+      '広告作成 → 「Advantage+クリエイティブ」セクションを確認',
+      '利用したい自動化機能（画像拡張・テキスト最適化・音楽追加）を有効化',
+      'プレビューで各フォーマット（フィード・ストーリーズ・リール）の見え方を確認',
+      'ブランドガイドラインと相違がないかレビューしてから配信'
+    ]
+  },
+  {
+    id: 12, cat: 'クリエイティブ', effect: '中', badge: '効果中',
+    title: 'リール / ストーリーズ 縦型動画',
+    desc: 'フォーマットネイティブな縦型クリエイティブでCTR・CVR改善',
+    color: '#f59e0b',
+    updated: '2025-04',
+    detail: '縦型動画（9:16）はリールとストーリーズで全画面表示されるため、視認性が格段に高くなります。最初の3秒でブランドと価値提案を明示し、テロップを入れることで音声オフ環境でも伝わるよう制作することが重要です。',
+    steps: [
+      '解像度：1080×1920px（9:16）で制作',
+      '最初の3秒：商品や価格など核心を見せる（スクロール停止のフック）',
+      'テロップ：全セリフにキャプションを付ける（85%が音声オフで視聴）',
+      '動画尺：15〜30秒が最適（60秒以上は視聴完了率が大幅低下）',
+      'CTAは動画内に文字でも表示する'
+    ]
+  },
+
+  // SIGNAL
+  {
+    id: 13, cat: 'シグナル', effect: '高', badge: '効果大',
+    title: 'Conversions API（CAPI）導入',
+    desc: 'サーバーサイドでCVイベント送信。ブラウザ制限の損失を回復',
+    color: '#14b8a6',
+    updated: '2025-05',
+    detail: 'iOS14以降のATT規制やブラウザのITPにより、クライアントサイドPixelだけでは30〜40%のCVが計測できなくなっています。CAPIによるサーバーサイド送信でこの損失を補完し、AIの学習精度を大幅に改善できます。',
+    steps: [
+      'イベントマネージャ → データソース → 「Conversions API」を選択',
+      'ShopifyやMagento等のプラグインを使う場合は該当プラグインをインストール',
+      '自社実装の場合：注文完了時にサーバーからPurchaseイベントをAPIで送信',
+      '重複排除のため「event_id」パラメータを必ずPixel・API両方に含める',
+      'EMQ（イベントマッチング品質）スコアが6以上になっているか確認'
+    ]
+  },
+  {
+    id: 14, cat: 'シグナル', effect: '高', badge: '効果大',
+    title: 'Aggregated Event Measurement（AEM）設定',
+    desc: 'iOS向けに最優先CVイベントを正しく設定する',
+    color: '#14b8a6',
+    updated: '2025-05',
+    detail: 'AEMはiOSユーザーへの広告最適化に必要な設定です。1ドメインあたり最大8つのイベントを優先度順に設定する必要があります。最重要のPurchaseを1位に置き、下位にAddToCart・ViewContentなどのマイクロCVを設定します。',
+    steps: [
+      'イベントマネージャ → ドメイン認証を完了させる（DNS or metaタグ）',
+      '集計イベント測定 → イベントを設定 → 優先度1位に「Purchase」',
+      '2〜4位：InitiateCheckout / AddToCart / ViewContent の順で設定',
+      '5〜8位：リード系イベントや他のマイクロCVを設定',
+      '設定変更後72時間はアクティブな広告に影響が出るため注意'
+    ]
+  },
+  {
+    id: 15, cat: 'シグナル', effect: '中', badge: '効果中',
+    title: 'Pixelイベントマッチング品質（EMQ）向上',
+    desc: 'メール・電話・顧客IDを渡してEMQスコアを7以上に改善',
+    color: '#14b8a6',
+    updated: '2025-04',
+    detail: 'イベントマッチング品質（EMQ）は0〜10のスコアで、高いほどCVシグナルがMetaのユーザーデータと正確に紐付けられます。メールアドレス・電話番号・外部ID（em/ph/external_id）をハッシュ化して送信することでスコアを改善できます。',
+    steps: [
+      'イベントマネージャ → データソース → 「イベントマッチング品質」を確認',
+      'Pixelに追加パラメータを実装：em（メール）、ph（電話）、external_id（顧客ID）',
+      '各値はSHA-256でハッシュ化してから送信（プライバシー保護）',
+      'ログイン済みユーザーのページでは必ず送信するよう実装',
+      'EMQ 7以上を目標に設定し、改善後1週間でスコア変化を確認'
+    ]
+  },
+  {
+    id: 16, cat: 'シグナル', effect: '中', badge: '効果中',
+    title: 'オフラインCVアップロード',
+    desc: '店舗・電話購入などオフラインCVを広告最適化に活用',
+    color: '#14b8a6',
+    updated: '2025-04',
+    detail: '実店舗や電話での購入データをMetaに定期アップロードすることで、オフラインCVも広告の最適化シグナルとして活用できます。オムニチャネルEC事業者に特に有効です。',
+    steps: [
+      'イベントマネージャ → データソース → 「オフラインイベント」を選択',
+      'CSVフォーマットで購入データ（日時・金額・メールor電話）を準備',
+      '購入から72時間以内にアップロードするとマッチング精度が高い',
+      'CRMやPOSシステムとAPIで自動連携することで手動作業を削減',
+      'マッチ率が20%以上を確保できているか定期確認'
+    ]
+  },
+
+  // DELIVERY
+  {
+    id: 17, cat: '配信設定', effect: '高', badge: '効果大',
+    title: 'Advantage+ プレースメント',
+    desc: '全面配置でシステムに枠を選ばせる。CPA改善効果が高い',
+    color: '#7c3aed',
+    updated: '2025-05',
+    detail: 'Advantage+プレースメントは、Facebook・Instagram・Audience Networkの全広告枠をAIが自動で選択・最適化します。手動で特定プレースメントを絞ると学習データが減少しCPAが悪化するケースが多いため、原則Advantage+を推奨します。',
+    steps: [
+      '広告セット → プレースメント → 「Advantage+プレースメント」を選択',
+      '特定プレースメントのみ除外したい場合は「編集」から対象のみOFF',
+      '縦型・横型・スクエアの各サイズのクリエイティブを用意して品質を担保',
+      '2週間後にプレースメント別のCPA・CVRをレポートで確認'
+    ]
+  },
+  {
+    id: 18, cat: '配信設定', effect: '中', badge: '効果中',
+    title: '学習フェーズ安定化',
+    desc: '週50CVを確保し設定変更を最小限に。学習リセットを防ぐ',
+    color: '#7c3aed',
+    updated: '2025-05',
+    detail: '学習フェーズ中（50CVに到達するまで）に予算・入札・ターゲット・クリエイティブなどを変更すると学習がリセットされます。学習フェーズを早く抜け出すには、十分な予算確保と変更の抑制が最重要です。',
+    steps: [
+      '1日あたりの予算：目標CPA × 5〜10倍以上を設定（週50CVを確保するため）',
+      '学習フェーズ中は入札・予算・オーディエンスの変更を避ける',
+      '変更が必要な場合は既存広告セットを複製して新規テストとして実施',
+      'Pixelの計測が正確か確認（計測不足が学習遅延の原因になる）',
+      '「学習制限あり」の警告が出た場合は予算増額か入札上限の見直しを'
+    ]
+  },
+  {
+    id: 19, cat: '配信設定', effect: '中', badge: '効果中',
+    title: 'CVウィンドウの最適設定',
+    desc: '購買サイクルに合わせて7日クリック/1日クリックを切り替え',
+    color: '#7c3aed',
+    updated: '2025-04',
+    detail: 'コンバージョンウィンドウは、広告クリック/閲覧からどのくらいの期間内のCVを最適化対象とするかの設定です。衝動買い商品は1日クリック、高額・検討期間が長い商品は7日クリックが効果的なケースが多いです。',
+    steps: [
+      '広告セット → 最適化 → 「コンバージョンウィンドウ」を確認',
+      '衝動買い商品・低価格品：1日クリックを試す',
+      '高額商品・要比較検討商品：7日クリックを設定',
+      '同一構成で1日 vs 7日をA/Bテストして最適なウィンドウを特定',
+      'ウィンドウ変更後は学習がリセットされるため注意'
+    ]
+  },
+  {
+    id: 20, cat: '配信設定', effect: '中', badge: '効果中',
+    title: 'カタログ商品セット最適化',
+    desc: '在庫・利益率・売れ筋で絞り込んだ商品セットをDPAに活用',
+    color: '#7c3aed',
+    updated: '2025-04',
+    detail: '全商品を広告に流すのではなく、利益率が高い商品・在庫が豊富な商品・ランディングページの品質が高い商品に絞った商品セットを作成することで、DPAのROASを大幅に改善できます。',
+    steps: [
+      'コマースマネージャ → カタログ → 「商品セット」を作成',
+      '条件例：在庫数 > 10 AND 利益率 > 30% AND レビュー ≥ 4.0',
+      '季節商品・セール商品は専用商品セットを作成して別の広告セットで配信',
+      '在庫切れ商品は自動的にフィードから除外されるよう設定',
+      '月次でCVR上位商品を確認し商品セットを更新'
+    ]
+  }
+];
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let currentFilter = 'all';
+let pendingImages = [];
+let conversationHistory = [];
+let isLoading = false;
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderKB(KB_DATA);
+  updateTimestamp();
+});
+
+function updateTimestamp() {
+  const now = new Date();
+  document.getElementById('last-updated').textContent =
+    now.toLocaleDateString('ja-JP', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+// ═══════════════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════════════
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ═══════════════════════════════════════
+// KNOWLEDGE BASE
+// ═══════════════════════════════════════
+function renderKB(data) {
+  const grid = document.getElementById('kb-grid');
+  grid.innerHTML = data.map(item => `
+    <div class="kb-card" data-id="${item.id}" data-cat="${item.cat}" data-effect="${item.effect}"
+         style="--accent-color: ${item.color}"
+         onclick="openModal(${item.id})">
+      <div class="kb-card-header">
+        <div class="kb-card-title">${item.title}</div>
+        <span class="badge badge-${item.effect === '高' ? 'high' : item.effect === '新' ? 'new' : 'mid'}">${item.badge}</span>
+      </div>
+      <div class="kb-card-desc">${item.desc}</div>
+      <div class="kb-card-meta">
+        <span class="cat-tag">${item.cat}</span>
+        <span class="kb-updated">${item.updated}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterKB() {
+  const query = document.getElementById('kb-search').value.toLowerCase();
+  document.querySelectorAll('.kb-card').forEach(card => {
+    const id = parseInt(card.dataset.id);
+    const item = KB_DATA.find(k => k.id === id);
+    const matchText = (item.title + item.desc + item.cat).toLowerCase().includes(query);
+    const matchFilter = currentFilter === 'all' || item.cat === currentFilter || item.effect === currentFilter;
+    card.classList.toggle('hidden', !matchText || !matchFilter);
+  });
+}
+
+function setFilter(btn, filter) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = filter;
+  filterKB();
+}
+
+// ── REFRESH with AI ──
+async function refreshKnowledge() {
+  const btn = document.getElementById('refresh-btn');
+  btn.classList.add('spinning');
+  btn.textContent = '';
+  btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> 取得中...`;
+
+  try {
+    const response = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+        messages: [{
+          role: 'user',
+          content: '2025年のMeta（Facebook）EC広告でCVを増やすための管理画面上の新しい施策や機能アップデートを3件調べて、JSON配列で返してください。各要素は {title, desc, detail} の形式で。余計な説明やマークダウンは不要で、JSONのみを返してください。'
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+
+    let newItems = [];
+    try { newItems = JSON.parse(clean); } catch(e) {}
+
+    if (Array.isArray(newItems) && newItems.length > 0) {
+      newItems.forEach((item, i) => {
+        KB_DATA.push({
+          id: 100 + i, cat: '最新情報', effect: '新', badge: '新機能',
+          title: item.title || '新機能',
+          desc: item.desc || '',
+          detail: item.detail || '',
+          steps: [],
+          color: '#4f8ef7',
+          updated: new Date().toISOString().slice(0, 7)
+        });
+      });
+      renderKB(KB_DATA);
+      filterKB();
+    }
+
+    document.getElementById('live-ind').style.display = 'flex';
+    updateTimestamp();
+  } catch (e) {
+    console.error(e);
+  }
+
+  btn.classList.remove('spinning');
+  btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> 最新情報を取得`;
+}
+
+// ═══════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════
+function openModal(id) {
+  const item = KB_DATA.find(k => k.id === id);
+  if (!item) return;
+  document.getElementById('modal-title').textContent = item.title;
+  document.getElementById('modal-body').textContent = item.detail || item.desc;
+  const stepsEl = document.getElementById('modal-steps');
+  if (item.steps && item.steps.length > 0) {
+    stepsEl.innerHTML = '<div style="font-size:12px;font-family:var(--mono);color:var(--text3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;">設定手順</div>' +
+      item.steps.map((s, i) => `
+        <div class="step">
+          <div class="step-num">${i + 1}</div>
+          <div class="step-text">${s}</div>
+        </div>
+      `).join('');
+  } else {
+    stepsEl.innerHTML = '';
+  }
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay') || e.currentTarget === document.querySelector('.modal-close')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('modal-overlay').classList.remove('open');
+});
+
+// ═══════════════════════════════════════
+// ADVISOR CHAT
+// ═══════════════════════════════════════
+function handleImages(input) {
+  const files = Array.from(input.files);
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      pendingImages.push({ file, dataUrl: e.target.result });
+      renderPreviews();
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+}
+
+function renderPreviews() {
+  const strip = document.getElementById('preview-strip');
+  strip.innerHTML = pendingImages.map((img, i) => `
+    <div class="preview-thumb">
+      <img src="${img.dataUrl}" alt="preview">
+      <button class="preview-remove" onclick="removeImage(${i})">×</button>
+    </div>
+  `).join('');
+}
+
+function removeImage(i) {
+  pendingImages.splice(i, 1);
+  renderPreviews();
+}
+
+function insertPrompt(text) {
+  const ta = document.getElementById('chat-input');
+  ta.value = text;
+  autoResize(ta);
+  ta.focus();
+  // switch to advisor tab
+  document.querySelectorAll('.tab')[1].click();
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab')[1].classList.add('active');
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-advisor').classList.add('active');
+}
+
+function autoResize(ta) {
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 120) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function addMsg(role, content, imageUrl) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  const avatar = role === 'ai' ? 'M' : 'You';
+  let imgHtml = imageUrl ? `<img class="msg-image" src="${imageUrl}" alt="uploaded">` : '';
+  div.innerHTML = `
+    <div class="msg-avatar">${avatar}</div>
+    <div class="msg-bubble">${content}${imgHtml}</div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ai';
+  div.id = 'typing-indicator';
+  div.innerHTML = `<div class="msg-avatar">M</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+async function sendMessage() {
+  if (isLoading) return;
+  const ta = document.getElementById('chat-input');
+  const text = ta.value.trim();
+  if (!text && pendingImages.length === 0) return;
+
+  isLoading = true;
+  document.getElementById('send-btn').disabled = true;
+
+  // Show user message
+  const firstImageUrl = pendingImages.length > 0 ? pendingImages[0].dataUrl : null;
+  addMsg('user', text || '（スクショを送付しました）', firstImageUrl);
+
+  // Build API message content
+  const userContent = [];
+  pendingImages.forEach(img => {
+    const base64 = img.dataUrl.split(',')[1];
+    const mtype = img.dataUrl.split(';')[0].split(':')[1];
+    userContent.push({ type: 'image', source: { type: 'base64', media_type: mtype, data: base64 } });
+  });
+  if (text) userContent.push({ type: 'text', text });
+
+  conversationHistory.push({ role: 'user', content: userContent });
+
+  // Reset input
+  ta.value = '';
+  autoResize(ta);
+  pendingImages = [];
+  renderPreviews();
+
+  showTyping();
+
+  const systemPrompt = `あなたはMeta（Facebook/Instagram）EC広告の専門アドバイザーです。
+ユーザーから管理画面のスクリーンショットや状況説明を受け取り、具体的で実践的な改善提案を行います。
+
+回答スタイル：
+- 日本語で回答
+- 問題点を優先度順（高/中/低）で整理
+- 各改善提案は「何を」「どこで」「どう設定するか」を具体的に
+- 設定手順がある場合は番号付きで記載
+- 数値目標（週50CV・EMQスコア7以上など）を積極的に提示
+- スクショが共有された場合は画面の内容を読み取って診断する
+
+専門知識領域：
+- Advantage+ショッピングキャンペーン（ASC）
+- Conversions API（CAPI）とPixelイベント計測
+- 入札戦略（最高価値・目標ROAS・コスト上限）
+- Dynamic Creative・DPA（カタログ広告）
+- オーディエンス設計（LAL・リターゲティング・Advantage+オーディエンス）
+- Aggregated Event Measurement（AEM/iOS対応）
+- 学習フェーズの安定化
+- クリエイティブ最適化（縦型動画・Advantage+クリエイティブ）`;
+
+  try {
+    const response = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: conversationHistory
+      })
+    });
+
+    const data = await response.json();
+    const reply = data.content.map(b => b.text || '').join('');
+    conversationHistory.push({ role: 'assistant', content: reply });
+
+    hideTyping();
+    // Format reply: bold **text** and newlines
+    const formatted = reply
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+    addMsg('ai', formatted);
+
+  } catch (e) {
+    hideTyping();
+    addMsg('ai', 'エラーが発生しました。もう一度お試しください。');
+  }
+
+  isLoading = false;
+  document.getElementById('send-btn').disabled = false;
+}
+</script>
+
+
+</body></html>
